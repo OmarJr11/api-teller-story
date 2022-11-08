@@ -1,0 +1,207 @@
+@import './assets/styles/colors.scss';
+
+body {
+  width: 100% !important;
+  box-sizing: border-box !important;
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: $background !important;
+  color: $text-color !important;
+  overflow-x: hidden !important;
+}
+
+button, span, h1, h2, h3 {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif !important;
+}
+
+div {
+  box-sizing: border-box !important;
+}
+
+h1 {
+  font-size: 32px !important;
+  margin: 0 !important;
+}
+
+h2 {
+  font-size: 28px !important;
+  margin: 0 !important;
+}
+
+h3 {
+  font-size: 24px !important;
+  margin: 0 !important;
+}
+
+p {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-weight: 380 !important;
+  font-size: 15px !important;
+  margin: 0;
+}
+
+img{
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+}
+
+//WIDTH
+.w-100 {
+  width: 100% !important;
+}
+
+.w-90 {
+  width: 90% !important;
+}
+
+.w-80 {
+  width: 80% !important;
+}
+
+.w-70 {
+  width: 70% !important;
+}
+
+.w-50 {
+  width: 50% !important;
+}
+
+//HEIGHT
+.h-100 {
+  height: 100% !important;
+}
+
+.h-80 {
+  height: 80% !important;
+}
+
+.h-60 {
+  height: 60% !important;
+}
+
+.h-58 {
+  height: 57% !important;
+}
+
+.h-55 {
+  height: 55% !important;
+}
+
+.h-10 {
+  height: 10% !important;
+}
+
+//TEXT-ALIGN
+.text-center{
+  text-align: center !important;
+}
+
+
+//FONT WEIGHT
+.text-400 {
+  font-weight: 400 !important;
+}
+
+.text-500 {
+  font-weight: 500 !important;
+}
+
+.text-600 {
+  font-weight: 600 !important;
+}
+
+.text-center {
+  text-align: center !important;
+}
+
+//Font size
+.text-13{
+  font-size: 13px !important;
+}
+
+.text-15{
+  font-size: 15px !important;
+}
+
+.text-18{
+  font-size: 18px !important;
+}
+
+.text-20{
+  font-size: 20px !important;
+}
+
+.text-22{
+  font-size: 22px !important;
+}
+
+.strong {
+  font-weight: 650 !important;
+}
+
+//SCROLL
+.scroll::-webkit-scrollbar {
+  -webkit-appearance: none;
+}
+
+.scroll::-webkit-scrollbar:vertical {
+  width: 11px;
+}
+
+.scroll::-webkit-scrollbar-thumb {
+  background: rgba(182, 182, 182, 0.555);
+  border-radius: 12px;
+}
+
+//Icons 
+svg {
+  font-size: 22px !important;
+  color: $icon-color !important;
+}
+
+//GENERAL
+.icon-disable{
+  color: $disable-color !important;
+}
+
+.container-center {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+.container-start {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: flex-start !important;
+  justify-content: space-between!important;
+}
+
+.box-shadow{
+  box-shadow:  3px 3px 8px $shadow-color;
+  background-color: $body !important;
+  border-radius: 5px;
+}
+
+.border-radius-top {
+  border-radius: 5px 5px 0px 0px;
+}
+
+.border-radius-bottom {
+  border-radius: 5px 5px 0px 0px;
+}
+
+.pointer {
+  cursor: pointer !important;
+}
+
+.primary-color{
+  color: $primary-color!important;
+}

@@ -1,0 +1,67 @@
+@import '../../index.scss';
+
+.menu {
+    .box-start {
+        width: 100% !important;
+    }
+
+    .box-end {
+        width: 100% !important;
+        height: 25% !important;
+    }
+}
+
+.nav-link {
+    width: 100% !important;
+    height: 100% !important;
+    padding-left: 4px !important;
+    color: $text-color !important;
+    text-decoration: none !important;
+    text-align: center !important;
+    gap: 4px;
+
+    span {
+        font-size: 15px !important;
+    }
+
+    svg {
+        color: white;
+    }
+
+    &:hover {
+        background-color: $item-color !important;
+        border-radius: 5px !important;
+    
+        span {
+            color: $primary-color !important;
+        }
+    
+        svg {
+            color: $primary-color !important;
+        }
+    }
+}
+
+.item {
+    width: 90% !important;
+    text-align: center !important;
+    
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    align-items: center;
+}
+
+.active {
+    background-color: $item-color !important;
+    border-radius: 5px !important;
+
+    span {
+        color: $primary-color !important;
+    }
+
+    svg {
+        color: $primary-color !important;
+    }
+}

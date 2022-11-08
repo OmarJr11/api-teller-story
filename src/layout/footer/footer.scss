@@ -1,0 +1,16 @@
+@import '../../index.scss';
+@import '../../assets/styles/colors.scss';
+
+.footer {
+    position: sticky !important;
+    top: 0px;
+    box-sizing: border-box !important;
+    background-color: $body !important;
+    box-shadow:  -2px 2px 14px $shadow-color;
+}
+
+@media only screen and (max-width: 1099px) {
+    .footer{
+        display: none !important;
+    }
+}

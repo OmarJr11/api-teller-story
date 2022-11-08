@@ -1,0 +1,30 @@
+@import '../../assets/styles/colors.scss';
+.header-body {
+    .name {
+        color: $icon-color;
+        font-size: 32px !important;
+    }
+    
+    svg {
+        color: white !important;
+    }
+
+    .button{
+        width: 142px !important;
+        height: 40px !important;
+        background: $primary-color !important;
+        color: white;
+        
+        &:hover {
+            background-color: transparent !important;
+            transition: ease-in-out 0.5ms all;
+            .white {
+                color: $primary-color !important;
+            }
+
+            svg {
+                color: $primary-color !important;
+            }
+        }
+    }
+}
