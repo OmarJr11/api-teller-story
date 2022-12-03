@@ -4,9 +4,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
-  ManyToOne,
 } from 'typeorm';
-import { User } from './user.entity';
 
 @Entity('comments', { schema: 'public' })
 export class Comment {
@@ -16,18 +14,36 @@ export class Comment {
   @Column('text', { name: 'id_story' })
   idStory: number;
 
-  @ManyToOne(() => User, (user) => user.comments)
-  creator: User;
+  //@Column('text', { name: 'id_comment' })
+  //idStory: number;
+
+  @Column('int8', { name: 'like', default: 0 })
+  like: number;
 
   @Column('text', { name: 'text' })
   text: string;
 
+  @Column('character varying', { name: 'status', length: 50 })
+  status: string;
+
+  @Column('int8', { name: 'creator', nullable: true, select: false })
+  creator?: number;
+
   @Column('int8', { name: 'modifier', nullable: true, select: false })
-  modifier: number;
+  modifier?: number;
 
-  @CreateDateColumn({ name: 'cration_date' })
-  creationDate: Date;
+  @Column('timestamp without time zone', {
+    name: 'creation_date',
+    select: true,
+    default: () => 'CURRENT_TIMESTAMP',
+  })
+  creationDate?: Date | string;
 
-  @UpdateDateColumn({ name: 'modification_date' })
-  modificationDate: Date;
+  @UpdateDateColumn({
+    type: 'timestamp without time zone',
+    name: 'modification_date',
+    nullable: true,
+    select: false,
+  })
+  modificationDate?: Date;
 }
