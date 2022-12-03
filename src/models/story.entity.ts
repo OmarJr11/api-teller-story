@@ -11,7 +11,7 @@ import { File } from './file.entity';
 @Entity('stories', { schema: 'public' })
 export class Story {
   @PrimaryGeneratedColumn({ type: 'int8', name: 'id' })
-  id?: number;
+  id: number;
 
   @Column('character varying', { name: 'title', length: 150 })
   title: string;
@@ -19,7 +19,7 @@ export class Story {
   @Column('text', { name: 'text' })
   text: string;
 
-  @Column('int8', { name: 'like', default: () => '0' })
+  @Column('int8', { name: 'like', default: 0 })
   like?: number;
 
   @Column('int8', { name: 'image'})
@@ -27,7 +27,7 @@ export class Story {
 
   @OneToOne(() => File, (file) => file.id)
   @JoinColumn([{ name: 'image', referencedColumnName: 'id' }])
-  file: File;
+  file?: File;
 
   @Column('character varying', { name: 'status', length: 50 })
   status: string;
@@ -44,14 +44,6 @@ export class Story {
 
   @Column('int8', { name: 'modifier', nullable: true, select: false })
   modifier?: number;
-
-  @Column('character varying', {
-    name: 'modifier_ip',
-    length: 50,
-    nullable: true,
-    select: false,
-  })
-  modifierIp?: string;
 
   @UpdateDateColumn({
     type: 'timestamp without time zone',

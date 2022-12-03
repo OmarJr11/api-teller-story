@@ -33,8 +33,8 @@ export class User {
   @Column('character varying', { name: 'status', length: 50 })
   status: string;
 
-  @OneToMany(() => Comment, (comment) => comment.creator)
-  comments: Comment[];
+  //@OneToMany(() => Comment, (comment) => comment.creator)
+  //comments: Comment[];
 
   @CreateDateColumn({ name: 'creation_date' })
   creationDate: Date;

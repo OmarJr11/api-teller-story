@@ -17,7 +17,10 @@ export const GET_ALL_Story = {
       where: {
         status: Not(StatusEnum.deleted),
       },
-      relations: ['file']
+      relations: ['file'],
+      order: {
+        creationDate: "DESC",
+      }
     });
     return formatStories(stories);
   },

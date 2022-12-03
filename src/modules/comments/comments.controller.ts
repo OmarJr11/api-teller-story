@@ -2,7 +2,18 @@ import { Request, Response } from 'express';
 import { myDataSource } from '../../common/config/app-data-source';
 import { Comment } from '../../models/comment.entity';
 
-//*Logic to create a comment
+export function formatComments(comments: Comment[]): Comment[] {
+  return comments.map((comment) => formatComment(comment));
+}
+
+export function formatComment(comment: Comment): Comment {
+  comment.creationDate = comment.creationDate?.toString();
+  comment.id = Number(comment.id);
+  delete comment.modificationDate;
+  delete comment.creator;
+  delete comment.modifier;
+  return comment;
+}
 
 export const create = async (req: Request, res: Response) => {
   try {
@@ -54,30 +65,19 @@ export const findAll = (req: Request, res: Response) => {
 
 ///*Logic to get comment by id
 
-async function getOneById(
+export async function getById(
   id: number,
-  res: Response
 ): Promise<Comment | undefined> {
-  try {
-    const commentsRepository = myDataSource.getRepository(Comment);
-    const comment = commentsRepository.findOneOrFail({
-      where: {
-        id: id
-      }
-    });
-    return comment;
-  } catch (error) {
-    if (error instanceof Error) {
-      res.status(500).json({
-        code: 500,
-        status: false,
-        message: 'Comment was not found.'
-      });
+  const commentsRepository = myDataSource.getRepository(Comment);
+  const comment = commentsRepository.findOneOrFail({
+    where: {
+      id: id
     }
-  }
+  });
+  return comment;
 }
 
-export const findById = async (req: Request, res: Response) => {
+export const getOneById = async (req: Request, res: Response) => {
   const id: number = Number(req.params.idComment);
 
   if (!id) {
@@ -88,7 +88,7 @@ export const findById = async (req: Request, res: Response) => {
     });
   } else {
     try {
-      const comment = await getOneById(id, res);
+      const comment = await getById(id);
 
       if (!comment) {
         res.status(404).json({
@@ -131,7 +131,7 @@ export const update = async (req: Request, res: Response) => {
       const commentsRepository = myDataSource.getRepository(Comment);
       await commentsRepository.update({ id }, data);
 
-      const commentUpdate = await getOneById(id, res);
+      const commentUpdate = await getById(id);
       const response = {
         code: res.statusCode,
         success: true,
@@ -162,7 +162,7 @@ export const remove = async (req: Request, res: Response) => {
     });
   } else {
     try {
-      const comment = await getOneById(id, res);
+      const comment = await getById(id);
 
       if (!comment) {
         return res.status(404).json({
