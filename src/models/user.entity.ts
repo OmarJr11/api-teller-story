@@ -3,9 +3,9 @@ import {
   Column,
   PrimaryGeneratedColumn,
   CreateDateColumn,
-  OneToMany
+  //OneToMany
 } from 'typeorm';
-import { Comment } from './comment.entity';
+//import { Comment } from './comment.entity';
 
 @Entity('users', { schema: 'system' })
 export class User {
