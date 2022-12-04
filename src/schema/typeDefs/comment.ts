@@ -19,7 +19,7 @@ import {
   });
   
   export const CommentGraphQLMessage = new GraphQLObjectType({
-    name: 'result',
+    name: 'results',
     fields: {
       success: { type: GraphQLBoolean },
       message: { type: GraphQLString },
