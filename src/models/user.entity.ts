@@ -5,7 +5,6 @@ import {
   CreateDateColumn,
   //OneToMany
 } from 'typeorm';
-//import { Comment } from './comment.entity';
 
 @Entity('users', { schema: 'system' })
 export class User {
