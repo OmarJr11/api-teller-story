@@ -39,6 +39,7 @@ export const GET_STORY_BY_ID = {
         id,
         status: Not(StatusEnum.deleted),
       },
+      relations: ['file']
     });
     return formatStory(story);
   },
