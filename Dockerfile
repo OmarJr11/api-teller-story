@@ -1,9 +1,9 @@
 FROM node:16.16.0
 
-WORKDIR /app
+RUN mkdir -p /api-teller-story
+WORKDIR /api-teller-story
 
 COPY package*.json ./
-
 RUN npm install --legacy-peer-deps
 
 COPY . .

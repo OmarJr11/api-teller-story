@@ -12,7 +12,7 @@ import {
   DISLIKE_COMMENT,
   LIKE_COMMENT,
   UPDATE_COMMENT
-} from './Mutations/Comments-mutation';
+} from './Mutations/comments-mutation';
 import {
   GET_ALL_COMMENTS,
   GET_COMMENT_BY_ID

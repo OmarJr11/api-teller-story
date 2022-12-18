@@ -1,0 +1,33 @@
+version: '3.9'
+services:
+    postgres:
+        container_name: postgres
+        image: postgres:latest
+        restart: always
+        environment:
+            POSTGRES_DB: '${POSTGRES_DB:-teller_story}'
+            POSTGRES_USER: '${POSTGRES_USER:-postgres}'
+            POSTGRES_PASSWORD: '${POSTGRES_PASSWORD:-123}'
+        volumes:
+            - postgres_data:/var/lib/postgresql/data
+            - ./database/teller-story.sql:/docker-entrypoint-initdb.d/teller-story.sql
+        ports:
+            - "5432:5432"
+    backend:
+        container_name: teller
+        restart: always
+        build:
+            context: ./
+            dockerfile: Dockerfile
+        env_file: .env
+        volumes:
+            - ./:/api-teller-story
+            - /api-teller-story/node_modules/
+        ports:
+            - 3011:3011
+        depends_on:
+            - postgres
+        links:
+            - postgres
+volumes:
+    postgres_data:
