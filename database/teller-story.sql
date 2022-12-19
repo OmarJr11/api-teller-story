@@ -23,9 +23,9 @@ CREATE TABLE system.users (
     last_name           VARCHAR(50)     NOT NULL,
     password            VARCHAR(100)    NULL,
     email               VARCHAR(100)    NOT NULL,
+    "image"             BIGINT          NULL,
     status              VARCHAR(50)     NOT NULL,
 
-    creator             BIGINT          NULL,
     creation_date       TIMESTAMP       NOT NULL DEFAULT CURRENT_TIMESTAMP,
 
     modifier            BIGINT          NULL,
@@ -34,8 +34,8 @@ CREATE TABLE system.users (
     last_login          TIMESTAMP       NULL,
 
     PRIMARY KEY (id),
-    FOREIGN KEY (creator)   REFERENCES system.users(id),
-    FOREIGN KEY (modifier)  REFERENCES system.users(id)
+    FOREIGN KEY (modifier)  REFERENCES system.users(id),
+    FOREIGN KEY ("image")  REFERENCES system.files(id)
 );
 
 CREATE UNIQUE INDEX users_email_uq ON system.users USING btree(lower(email)) WHERE status <> 'Deleted';
@@ -73,7 +73,8 @@ CREATE TABLE stories (
 
     PRIMARY KEY(id),
     FOREIGN KEY (creator)           REFERENCES system.users(id),
-    FOREIGN KEY (modifier)          REFERENCES system.users(id)
+    FOREIGN KEY ("image")           REFERENCES system.files(id),
+    FOREIGN KEY (modifier)         REFERENCES system.users(id)
 );
 
 CREATE TABLE comments (
