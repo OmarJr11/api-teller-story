@@ -106,6 +106,13 @@ export const UPDATE_USER = {
             status
         };
 
+        var salt = bcrypt.genSaltSync(10);
+        var hash = bcrypt.hashSync(password, salt);
+        data = {
+            ...data,
+            password: hash
+        };
+
         const userExist = await getById(id);
         if (userExist) {
             await userRepository.update({ id }, data);
