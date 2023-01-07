@@ -33,12 +33,25 @@ export async function generateUsername(
 }
 
 export async function getById(id: number): Promise<User | undefined> {
-    const storyRepository = myDataSource.getRepository(User);
-    const story = await storyRepository.findOneOrFail({
+    const userRepository = myDataSource.getRepository(User);
+    const user = await userRepository.findOneOrFail({
         where: {
             id,
             status: Not(StatusEnum.deleted)
         }
     });
-    return story;
+    return user;
+}
+
+export async function getByEmail(email: string): Promise<User> {
+    const userRepository = myDataSource.getRepository(User);
+    const user = await userRepository.findOneOrFail({
+        where: {
+            email,
+            status: Not(StatusEnum.deleted)
+        },
+        relations: ['file']
+    });
+    
+    return user;
 }
