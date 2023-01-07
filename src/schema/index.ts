@@ -19,6 +19,7 @@ import {
     DELETE_USER,
     UPDATE_USER
 } from './Mutations/users-mutation';
+import { LOGIN_USER, REFRESH_TOKEN } from './Mutations/auth-mutation';
 
 const RootQuery = new GraphQLObjectType({
     name: 'RootQuery',
@@ -44,7 +45,9 @@ const Mutation = new GraphQLObjectType({
         dislikeComment: DISLIKE_COMMENT,
         createUser: CREATE_USER,
         updateUser: UPDATE_USER,
-        deleteUser: DELETE_USER
+        deleteUser: DELETE_USER,
+        loginUser: LOGIN_USER,
+        refreshToken: REFRESH_TOKEN,
     }
 });
 

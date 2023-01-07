@@ -4,10 +4,12 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     OneToOne,
-    JoinColumn
+    JoinColumn,
+    OneToMany
     //OneToMany
 } from 'typeorm';
 import { File } from './file.entity';
+import { RefreshToken } from './refresh-token.entity';
 //import { Comment } from './comment.entity';
 
 @Entity('users', { schema: 'system' })
@@ -32,7 +34,7 @@ export class User {
     file?: File;
 
     @Column('character varying', { name: 'password', length: 100 })
-    password: string;
+    password?: string;
 
     @Column('character varying', { name: 'email', length: 100 })
     email: string;
@@ -45,4 +47,10 @@ export class User {
 
     @CreateDateColumn({ name: 'creation_date' })
     creationDate: Date;
+
+    /**
+     *  Refresh token relations
+     */
+    @OneToMany(() => RefreshToken, (refreshTokens) => refreshTokens.user)
+    refreshTokens: RefreshToken[];
 }

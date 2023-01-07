@@ -9,9 +9,8 @@ export async function generateUsername(
     counter: number = 0
 ) {
     const userRepository = myDataSource.getRepository(User);
-
     let username: string =
-        firstName.toLowerCase() + '-' + lastName.toLowerCase() + counter;
+        firstName.toLowerCase() + '-' + lastName.toLowerCase();
 
     let userExists = await userRepository.findOne({
         where: {
@@ -21,7 +20,7 @@ export async function generateUsername(
 
     while (userExists) {
         username =
-            firstName.toLowerCase() + '-' + lastName.toLowerCase() + ++counter;
+            firstName.toLowerCase() + '-' + lastName.toLowerCase() + '-' + '0' + ++counter;
         userExists = await userRepository.findOne({
             where: {
                 username
@@ -33,12 +32,25 @@ export async function generateUsername(
 }
 
 export async function getById(id: number): Promise<User | undefined> {
-    const storyRepository = myDataSource.getRepository(User);
-    const story = await storyRepository.findOneOrFail({
+    const userRepository = myDataSource.getRepository(User);
+    const user = await userRepository.findOneOrFail({
         where: {
             id,
             status: Not(StatusEnum.deleted)
         }
     });
-    return story;
+    return user;
+}
+
+export async function getByEmail(email: string): Promise<User> {
+    const userRepository = myDataSource.getRepository(User);
+    const user = await userRepository.findOneOrFail({
+        where: {
+            email,
+            status: Not(StatusEnum.deleted)
+        },
+        relations: ['file']
+    });
+    
+    return user;
 }

@@ -16,9 +16,11 @@ import {
     generateUsername,
     getById
 } from '../../modules/users/users.controller';
+import { generateTokens } from '../../modules/refresh-tokens/refresh-token.controller';
+import { LoginGraphQL } from '../typeDefs/auth';
 
 export const CREATE_USER = {
-    type: UserGraphQL,
+    type: LoginGraphQL,
     args: {
         firstName: { type: GraphQLString },
         lastName: { type: GraphQLString },
@@ -63,7 +65,15 @@ export const CREATE_USER = {
 
         const dataToSave = userRepository.create(data);
         const user = await userRepository.save(dataToSave);
-        return user;
+        const tokenDB = await generateTokens(user, 'User');        
+        if(tokenDB.token === '' || tokenDB.refresh === '') {
+            return {
+                code: 500,
+                status: false,
+                message: 'Story could not be created, an error has occurred.',
+            };
+        }
+        return { user, token: { ...tokenDB } };
     }
 };
 
