@@ -9,9 +9,8 @@ export async function generateUsername(
     counter: number = 0
 ) {
     const userRepository = myDataSource.getRepository(User);
-
     let username: string =
-        firstName.toLowerCase() + '-' + lastName.toLowerCase() + counter;
+        firstName.toLowerCase() + '-' + lastName.toLowerCase();
 
     let userExists = await userRepository.findOne({
         where: {
@@ -21,7 +20,7 @@ export async function generateUsername(
 
     while (userExists) {
         username =
-            firstName.toLowerCase() + '-' + lastName.toLowerCase() + ++counter;
+            firstName.toLowerCase() + '-' + lastName.toLowerCase() + '-' + '0' + ++counter;
         userExists = await userRepository.findOne({
             where: {
                 username
